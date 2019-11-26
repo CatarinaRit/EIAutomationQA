@@ -12,16 +12,17 @@ import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;
 
 public class WebAutomation {
-    //private static WebDriver driver;
+
     public static WebDriver driver;
 
     public static void main(String[] args) {
-        driver = GetDriver("Chrome", false);
+        driver = GetDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 
         Home home = new Home(driver);
-        home.GoToHomePage();
+        String url = "https://staging.engineer.ai/home";
+        home.GoToHomePage(url);
         home.TakeAndSkipTour();
         home.SelectCurrency("US Dollars");
         home.GoToRegister();
@@ -51,14 +52,11 @@ public class WebAutomation {
         return sb.toString();
     }
 
-    private static WebDriver GetDriver(String browser, boolean headless) {
+    private static WebDriver GetDriver() {
         WebDriver driver;
                 System.setProperty("webdriver.chrome.driver", ".\\drivers\\chromedriver.exe");
                 ChromeOptions chromeOptions = new ChromeOptions();
-                if (headless) {
-                    chromeOptions.addArguments("--headless");
-                }
-                driver = new ChromeDriver(chromeOptions);
+              // driver = new ChromeDriver(chromeOptions);
                 System.out.printf("Browser not found, using Chrome as default");
                 driver = new ChromeDriver();
         return driver;

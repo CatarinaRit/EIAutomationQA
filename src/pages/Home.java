@@ -10,7 +10,7 @@ public class Home {
     WebDriver driver;
 
     By buttonTakeTour = By.xpath("//div[@class='welcomesection']/div/button");
-    By closePopUp = By.xpath("//*[@class='commonPopUp active']//*[@class='icon-cancel']");
+    By closePopUp = By.xpath("//*[@class='trademark-strip']//*[@class='icon-cancel']");
     By buttonSkipTour = By.xpath("//div[@class='contentholder active']/div[@class='letsskip']/button");
     By currencyDropdown = By.className("sel_state");
     By loginPanel = By.xpath("//*[@class='loginPanel']//button");
@@ -22,8 +22,8 @@ public class Home {
         this.driver = driver;
     }
 
-    public void GoToHomePage() {
-        driver.get("https://staging.engineer.ai/home");
+    public void GoToHomePage(String url) {
+        driver.get(url);
     }
 
     public void TakeAndSkipTour() {
